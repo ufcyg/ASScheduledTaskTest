@@ -1,8 +1,14 @@
 {
-  "name": "swag/plugin-skeleton",
-  "description": "Skeleton plugin",
+  "name": "as/scheduled-test-plugin",
+  "description": "Plugin for testing purposes, sends an eMail and tries to create a folder every minute",
   "type": "shopware-platform-plugin",
-  "license": "MIT",
+  "version": "v0.1.0",
+  "license": "proprietary",
+  "authors": [
+    {
+        "name": "SGS IT"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "ASScheduledTaskTest\\": "src/"
@@ -11,8 +17,8 @@
   "extra": {
     "shopware-plugin-class": "ASScheduledTaskTest\\ASScheduledTaskTest",
     "label": {
-      "de-DE": "Skeleton plugin",
-      "en-GB": "Skeleton plugin"
+      "de-DE": "Testplugin für Scheduled Tasks",
+      "en-GB": "Testplugin for Scheduled Tasks"
     }
   }
 }
