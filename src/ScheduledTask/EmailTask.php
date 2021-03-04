@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace SynlabOrderInterface\ScheduledTask;
+namespace ASScheduledTaskTest\ScheduledTask;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
-class HealthServiceTask extends ScheduledTask
+class EmailTask extends ScheduledTask
 {
     public static function getTaskName(): string
     {

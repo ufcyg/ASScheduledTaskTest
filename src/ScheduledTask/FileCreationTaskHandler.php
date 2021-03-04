@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SynlabOrderInterface\ScheduledTask;
+namespace ASScheduledTaskTest\ScheduledTask;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
@@ -23,7 +23,7 @@ class FileCreationTaskHandler extends ScheduledTaskHandler
     {
         $folderName = bin2hex(random_bytes(5));
         if (!file_exists('../custom/plugins/ASScheduledTaskTest/' . $folderName)) {
-            mkdir('../custom/plugins/SynlabOrderInterface/' . $folderName, 0777, true);
+            mkdir('../custom/plugins/ASScheduledTaskTest/' . $folderName, 0777, true);
         }
     }    
 }

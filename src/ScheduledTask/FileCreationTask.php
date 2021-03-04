@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SynlabOrderInterface\ScheduledTask;
+namespace ASScheduledTaskTest\ScheduledTask;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
