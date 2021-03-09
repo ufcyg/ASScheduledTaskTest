@@ -6,16 +6,20 @@ use ASMailService\Core\MailServiceHelper;
 use Exception;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
-
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class FileCreationTaskHandler extends ScheduledTaskHandler
 {
     /** @var MailServiceHelper $mailserviceHelper */
     private $mailserviceHelper;
+    /** @var SystemConfigService $systemConfigService */
+    protected $systemConfigService;
     public function __construct(EntityRepositoryInterface $scheduledTaskRepository,
-                                MailServiceHelper $mailserviceHelper)
+                                MailServiceHelper $mailserviceHelper,
+                                SystemConfigService $systemConfigService)
     {
         $this->mailserviceHelper = $mailserviceHelper;
+        $this->systemConfigService = $systemConfigService;
         parent::__construct($scheduledTaskRepository);
     }
 
@@ -28,10 +32,11 @@ class FileCreationTaskHandler extends ScheduledTaskHandler
     {
         $notificationSalesChannel = $this->systemConfigService->get('SynlabOrderInterface.config.fallbackSaleschannelNotification');
         try {
-            $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'cronjobtester','this is a testmail','Trying to get working directory','Trying to get working directory',['']);
+            $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'FileCreationTaskHandler','this is a testmail','Trying to get working directory','Trying to get working directory',['']);
             
+            // $a = 'asd';
             $a = getcwd();
-            $this->mailServiceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,$this->senderName,'controller test',$a,$a,['']);
+            $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'FileCreationTaskHandler','controller test',$a,$a,['']);
             
             $folderName = bin2hex(random_bytes(5));
             if (!file_exists('../custom/plugins/ASScheduledTaskTest/' . $folderName)) {
@@ -40,7 +45,7 @@ class FileCreationTaskHandler extends ScheduledTaskHandler
         }
         catch (Exception $e){
             
-            $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'cronjobtester','this is a testmail',$e->getMessage(),$e->getMessage(),['']);
+            $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'FileCreationTaskHandler','exception occured',$e->getMessage(),$e->getMessage(),['']);
         }
     }    
 }

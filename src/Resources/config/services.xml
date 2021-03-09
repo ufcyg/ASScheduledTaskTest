@@ -30,6 +30,7 @@
         <service id="ASScheduledTaskTest\ScheduledTask\FileCreationTaskHandler">
             <argument type="service" id="scheduled_task.repository" />
             <argument type="service" id="ASMailService\Core\MailServiceHelper" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
             <tag name="messenger.message_handler" />
         </service>
     </services>
