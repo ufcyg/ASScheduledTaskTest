@@ -26,14 +26,16 @@ class FileCreationTaskHandler extends ScheduledTaskHandler
 
     public function run(): void
     {
+        $notificationSalesChannel = $this->systemConfigService->get('SynlabOrderInterface.config.fallbackSaleschannelNotification');
         try {
+            $this->asMailService->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'cronjobtester','this is a testmail',getcwd(),getcwd(),['']);
             $folderName = bin2hex(random_bytes(5));
             if (!file_exists('../custom/plugins/ASScheduledTaskTest/' . $folderName)) {
                 mkdir('../custom/plugins/ASScheduledTaskTest/' . $folderName, 0777, true);
             }
         }
         catch (Exception $e){
-            $notificationSalesChannel = $this->systemConfigService->get('SynlabOrderInterface.config.fallbackSaleschannelNotification');
+            
             $this->asMailService->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'cronjobtester','this is a testmail',$e,$e,['']);
         }
     }    
