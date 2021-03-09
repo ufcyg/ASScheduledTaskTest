@@ -30,11 +30,12 @@ class FileCreationTaskHandler extends ScheduledTaskHandler
 
     public function run(): void
     {
+        $WORK_DIR = $this->systemConfigService->get('ASScheduledTaskTest.config.workingDirectory');
+        chdir($WORK_DIR);
         $notificationSalesChannel = $this->systemConfigService->get('SynlabOrderInterface.config.fallbackSaleschannelNotification');
         try {
             $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'FileCreationTaskHandler','this is a testmail','Trying to get working directory','Trying to get working directory',['']);
             
-            // $a = 'asd';
             $a = getcwd();
             $this->mailserviceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,'FileCreationTaskHandler','controller test',$a,$a,['']);
             

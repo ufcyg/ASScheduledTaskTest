@@ -39,7 +39,12 @@ class ASScheduledTaskTestController extends AbstractController
         $notificationSalesChannel = $this->systemConfigService->get('SynlabOrderInterface.config.fallbackSaleschannelNotification');
         $this->mailServiceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,$this->senderName,'controller test','henlo','henlo',['']);
         $a = getcwd();
-        $this->mailServiceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,$this->senderName,'controller test',$a,$a,['']);
+        $this->mailServiceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,$this->senderName,'controller test pre chdir',$a,$a,['']);
+        $WORK_DIR = $this->systemConfigService->get('ASScheduledTaskTest.config.workingDirectory');
+        chdir($WORK_DIR);
+        $a = getcwd();
+        $this->mailServiceHelper->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],$notificationSalesChannel,$this->senderName,'controller test post chdir',$a,$a,['']);
+        
         return new Response('',Response::HTTP_NO_CONTENT);
     }
 
