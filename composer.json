@@ -2,7 +2,7 @@
   "name": "as/scheduled-test-plugin",
   "description": "Plugin for testing purposes, sends an eMail and tries to create a folder every minute",
   "type": "shopware-platform-plugin",
-  "version": "v0.3.6",
+  "version": "v0.3.7",
   "license": "proprietary",
   "authors": [
     {
