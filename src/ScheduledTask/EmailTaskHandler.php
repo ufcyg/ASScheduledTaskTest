@@ -30,24 +30,25 @@ class EmailTaskHandler extends ScheduledTaskHandler
 
     public function run(): void
     {
+        $workdir = getcwd();
         $notificationSalesChannel = $this->systemConfigService->get('SynlabOrderInterface.config.fallbackSaleschannelNotification');
         $this->asMailService->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],
                                             $notificationSalesChannel,
                                             'cronjobtester',
                                             'pre chdir',
-                                            'testmail<br>testing shit',
-                                            'testmail<br>testing shit',
+                                            $workdir,
+                                            $workdir,
                                             ['']);
 
         $WORK_DIR = $this->systemConfigService->get('ASScheduledTaskTest.config.workingDirectory');
         chdir($WORK_DIR);
-        
+        $workdir = getcwd();
         $this->asMailService->sendMyMail(['patrick.thimm@synlab.com'=>'patrick thimm'],
                                             $notificationSalesChannel,
                                             'cronjobtester',
                                             'post chdir',
-                                            'testmail<br>testing shit',
-                                            'testmail<br>testing shit',
+                                            $workdir,
+                                            $workdir,
                                             ['']);
     }    
 }
